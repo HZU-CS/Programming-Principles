@@ -15,3 +15,15 @@ C Primer Plus 第6版 中文版.pdf
 https://115.com/s/sw3rd0533zv#
 
 访问码：udc1
+
+EssentialC.pdf
+
+https://115.com/s/sw3rmvf33zv#
+
+访问码：x789
+
+PointersAndMemory.pdf
+
+https://115.com/s/sw3rmvq33zv#
+
+访问码：dba9
