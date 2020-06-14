@@ -16,8 +16,6 @@
 
 环境配置
 
-- Visual Studio Express（电脑硬件配置要求较高）
-  - [Visual Studio 2019安装与使用](https://zhuanlan.zhihu.com/p/94998894)
 - VSCode（电脑硬件配置要求较低）
   - [基于 VS Code + MinGW-w64 的C语言/C++简单环境配置，专治小白](https://zhuanlan.zhihu.com/p/77074009)
   - [Visual Studio Code 如何编写运行 C、C++ 程序？](https://www.zhihu.com/question/30315894)
@@ -26,12 +24,14 @@
   - [现代化 C++ 开发工具 CLion:从入门到精通](https://zhuanlan.zhihu.com/p/97175720)
   - [Clion 配置C/C++环境](https://zhuanlan.zhihu.com/p/40776005)
 - Xcode
+- Code::Blocks
+  - http://www.codeblocks.org/
+- Eclipse
+  - http://www.eclipse.org/downloads/packages/release/juno/sr1/eclipse-ide-cc-developers
 - Dev-C++（电脑硬件配置要求较低）
 - 在线编译器
   - [repl](https://repl.it/languages/c)
   - [online gdb](https://www.onlinegdb.com/)
-
-- https://www.zhihu.com/question/281129975)
 
 ## Git
 
