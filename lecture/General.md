@@ -21,7 +21,7 @@
 
 ### Online Reference
 
-- Use carefully, make sure you digest the knowledge
+- Use carefully, make sure you digest the knowledge and quote
 
 ### Ask me & mate
 
