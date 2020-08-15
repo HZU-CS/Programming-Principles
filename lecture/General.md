@@ -2,7 +2,7 @@
 
 ## Be comfortable being uncomfortable
 
-- You will encounter a lot of questions. You should be confused sometimes.
+- You will encounter a lot of questions. You should be confused sometimes. Struggle and fully embrace the confusion.
 - Blaming won't help.
 - If you can't solve a problem, there's an easier problem you can't solve. Find it and solve it. It's your responsibility.
 - Do understand the fundamentals.
