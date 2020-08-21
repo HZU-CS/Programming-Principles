@@ -159,55 +159,112 @@ int main(void)
 } // end function main
 ```
 
-
-
 ### Variables and Variable Definitions
 
+```c
+int integer1; // first number to be entered by user
+int integer2; // second number to be entered by user
+```
 
+are definitions. The names integer1 and integer2 are the names of variables—locations in memory where values can be stored for use by a program. These definitions specify that variables integer1 and integer2 are of type int, which means that they’ll hold integer values, i.e., whole numbers such as 7, –11, 0, 31914 and the like. 
 
 ### Define Variables Before They Are Used
 
-
+All variables must be defined with a name and a data type before they can be used in a program. The C standard allows you to place each variable definition anywhere in main before that variable’s first use in the code (though some older compilers do not allow this). You’ll see later why you should define variables close to their first use.
 
 ### Defining Multiple Variables of the Same Type in One Statement
 
+The preceding definitions could be combined into a single definition as follows:
 
+```c
+int integer1, integer2;
+```
+
+but that would have made it difficult to associate comments with each of the variables. 
 
 ### Identifiers and Case Sensitivity
 
-
+A variable name in C can be any valid identifier. An identifier is a series of characters consisting of letters, digits and underscores (_) that does not begin with a digit. C is case sensitive—uppercase and lowercase letters are different in C, so a1 and A1 are different identifiers. 
 
 ### Prompting Messages
 
+```c
+printf( "Enter first integer\n" ); // prompt
+```
 
+displays the literal "Enter first integer" and positions the cursor to the beginning of the next line. This message is called a prompt because it tells the user to take a specific action. 
 
 ### The scanf Function and Formatted Inputs
 
+```c
+scanf( "%d", &integer1 ); // read an integer
+```
 
+uses scanf (the “f” stands for “formatted”) to obtain a value from the user. The function reads from the standard input, which is usually the keyboard. 
+
+This scanf has two arguments, "%d" and &integer1. The first, the format control string, indicates the type of data that should be entered by the user. The %d conversion specifier indicates that the data should be an integer (the letter d stands for “decimal integer”). The % in this context is treated by scanf (and printf as we’ll see) as a special character that begins a conversion specifier. 
+
+The second argument of scanf begins with an ampersand (&)—called the address operator—followed by the variable name. The &, when combined with the variable name, tells scanf the location (or address) in memory at which the variable integer1 is stored. The computer then stores the value that the user enters for integer1 at that location. The use of ampersand (&) is often confusing to novice programmers or to people who have programmed in other languages that do not require this notation. For now, just remember to precede each variable in every call to scanf with an ampersand.
+
+When the computer executes the preceding scanf, it waits for the user to enter a value for variable integer1. The user responds by typing an integer, then pressing the Enter key (sometimes labeled as the Return key) to send the number to the computer. The computer then assigns this number, or value, to the variable integer1. Any subsequent references to integer1 in this program will use this same value. Functions printf and scanf facilitate interaction between the user and the computer. This interaction resembles a dialogue and is often called interactive computing.
 
 ### Prompting for and Inputting the Second Integer
 
+```c
+printf( "Enter second integer\n" ); // prompt
+```
 
+displays the message Enter second integer on the screen, then positions the cursor to the beginning of the next line. This printf also prompts the user to take action. 
+
+```c
+scanf( "%d", &integer2 ); // read an integer
+```
+
+obtains a value for variable integer2 from the user. 
 
 ### Defining the sum Variable
 
+```c
+int sum; // variable in which sum will be stored
+```
 
+defines the variable sum of type int just before its first use. 
 
 ### Assignment Statement
 
+```c
+sum = integer1 + integer2; // assign total to sum
+```
 
+calculates the total of variables integer1 and integer2 and assigns the result to variable sum using the assignment operator =. The statement is read as, “sum gets the value of the expression integer1 + integer2.” Most calculations are performed in assignments. The = operator and the + operator are called binary operators because each has two operands. The + operator’s operands are integer1 and integer2. The = operator’s two operands are sum and the value of the expression integer1 + integer2. 
 
 ### Printing with a Format Control String
 
+```c
+printf( "Sum is %d\n", sum ); // print sum
+```
 
+calls function printf to print the literal Sum is followed by the numerical value of variable sum on the screen. This printf has two arguments, "Sum is %d\n" and sum. The first is the format control string. It contains some literal characters to be displayed and the conversion specifier %d indicating that an integer will be printed. The second argument specifies the value to be printed. The conversion specifier for an integer is the same in both printf and scanf—this is true for most C data types. 
 
 ### Combining a Variable Definition and Assignment Statement
 
+You can assign a value to a variable in its definition—this is known as initializing the variable. 
 
+```c
+int sum = integer1 + integer2; // assign total to sum
+```
+
+which adds integer1 and integer2, then stores the result in the variable sum. 
 
 ### Calculations in printf Statements
 
+Calculations can also be performed inside printf statements.
 
+```c
+printf( "Sum is %d\n", integer1 + integer2 );
+```
+
+in which case the variable sum is not needed. 
 
 ## Memory Concepts
 
@@ -285,23 +342,136 @@ Addition and subtraction operations are evaluated next. If an expression contain
 
 The assignment operator (=) is evaluated last.
 
+The rules of operator precedence specify the order C uses to evaluate expressions.1 When we say evaluation proceeds from left to right, we’re referring to the associativity of the operators. We’ll see that some operators associate from right to left.
 
+| Operators | Operations                        | Order of evaluation                                          |
+| --------- | --------------------------------- | ------------------------------------------------------------ |
+| ()        | Parentheses                       | Evaluated first. If the parentheses are nested, the expression in the innermost pair is evaluated first. If there are several pairs of parentheses “on the same level” (i.e., not nested), they’re evaluated left to right |
+| */%       | Multiplication Division Remainder | Evaluated second. If there are several, they’re evaluated left to right. |
+| +-        | Addition Subtraction              | Evaluated third. If there are several, they’re evaluated left to right. |
+| =         | Assignment                        | Evaluated last.                                              |
 
 ### Sample Algebraic and C Expressions
 
-
-
 ### Evaluation of a Second-Degree Polynomial
-
-
 
 ### Using Parentheses for Clarity
 
+As in algebra, it’s acceptable to place unnecessary parentheses in an expression to make the expression clearer. These are called redundant parentheses. 
 
+```c
+y = ( a * x * x ) + ( b * x ) + c;
+```
 
 ## Decision Making: Equality and Relational Operators
 
+Executable statements either perform actions (such as calculations or input or output of data) or make decisions (we’ll soon see several examples of these). We might make a decision in a program, for example, to determine whether a person’s grade on an exam is greater than or equal to 60 and whether the program should print the message “Congratulations! You passed.” This section introduces a simple version of C’s if statement that allows a program to make a decision based on the truth or falsity of a statement of fact called a condition. If the condition is true (i.e., the condition is met), the statement in the body of the if statement is executed. If the condition is false (i.e., the condition isn’t met), the body statement isn’t executed. Whether the body statement is executed or not, after the if statement completes, execution proceeds with the next statement in sequence after the if statement. 
 
+Conditions in if statements are formed by using the equality operators and relational operators. The relational operators all have the same level of precedence and they associate left to right. The equality operators have a lower level of precedence than the relational operators and they also associate left to right. [Note: In C, a condition may actually be any expression that generates a zero (false) or nonzero (true) value.]
+
+| Algebraic equality or relational operator | C equality or relational operator | Example of C condition | Meaning of C condition          |
+| ----------------------------------------- | --------------------------------- | ---------------------- | ------------------------------- |
+| Relational operators                      |                                   |                        |                                 |
+| >                                         | >                                 | x > y                  | x is greater than y             |
+| <                                         | <                                 | x < y                  | x is less than y                |
+| ≥                                         | >=                                | x >= y                 | x is greater than or equal to y |
+| ≤                                         | <=                                | x <= y                 | x is less than or equal to y    |
+| Equality operators                        |                                   |                        |                                 |
+| =                                         | ==                                | x == y                 | x is equal to y                 |
+| ≠                                         | !=                                | x != y                 | x is not equal to y             |
+
+```c
+// Using if statements, relational
+// operators, and equality operators.
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Enter two integers, and I will tell you\n");
+    printf("the relationships they satisfy: ");
+
+    int num1; // first number to be read from user
+    int num2; // second number to be read from user
+
+    scanf("%d %d", &num1, &num2); // read two integers
+
+    if (num1 == num2)
+    {
+        printf("%d is equal to %d\n", num1, num2);
+    } // end if
+
+    if (num1 != num2)
+    {
+        printf("%d is not equal to %d\n", num1, num2);
+    } // end if
+
+    if (num1 < num2)
+    {
+        printf("%d is less than %d\n", num1, num2);
+    } // end if
+
+    if (num1 > num2)
+    {
+        printf("%d is greater than %d\n", num1, num2);
+    } // end if
+
+    if (num1 <= num2)
+    {
+        printf("%d is less than or equal to %d\n", num1, num2);
+    } // end if
+
+    if (num1 >= num2)
+    {
+        printf("%d is greater than or equal to %d\n", num1, num2);
+    } // end if
+
+    return 0;
+}
+```
+
+The program uses scanf to read two integers into the int variables num1 and num2. Each conversion specifier has a corresponding argument in which a value will be stored. The first %d converts a value to be stored in the variable num1, and the second %d converts a value to be stored in the variable num2. 
+
+### Comparing Numbers
+
+```c
+if (num1 == num2) {
+    printf( "%d is equal to %d\n", num1, num2 );
+} // end if
+```
+
+compares the values of variables num1 and num2 to test for equality. If the values are equal, the printf statement displays a line of text indicating that the numbers are equal. If the conditions are true in one or more of the if statements, the corresponding body statement displays an appropriate line of text. Indenting the body of each if statement and placing blank lines above and below each if statement enhances program readability.
+
+A left brace, {, begins the body of each if statement . A corresponding right brace, }, ends each if statement’s body. Any number of statements can be placed in the body of an if statement.
+
+Operators are shown top to bottom in decreasing order of precedence. The equals sign is also an operator. All these operators, with the exception of the assignment operator =, associate from left to right. The assignment operator (=) associates from right to left. 
+
+| Operators | Associativity |
+| --------- | ------------- |
+| ()        | left to right |
+| * / %     | left to right |
+| + -       | left to right |
+| < <= > >= | left to right |
+| == !=     | left to right |
+| =         | right to left |
+
+Some of the words we’ve used in the C programs in this chapter—in particular int, if and void—are keywords or reserved words of the language.  You must be careful not to use these as identifiers such as variable names. 
+
+In this chapter, we’ve introduced many important features of the C programming language, including displaying data on the screen, inputting data from the user, performing calculations and making decisions. In the next chapter, we build upon these techniques as we introduce structured programming. You’ll become more familiar with indentation techniques. We’ll study how to specify the order in which statements are executed—this is called flow of control.
+
+```c
+// Keywords
+auto do goto signed unsigned
+break double if sizeof void
+case else int static volatile
+char enum long struct while
+const extern register switch
+continue float return typedef
+default for short union
+// Keywords added in C99 standard
+_Bool _Complex _Imaginary inline restrict
+// Keywords added in C11 standard
+_Alignas _Alignof _Atomic _Generic _Noreturn _Static_assert _Thread_local
+```
 
 ## Secure C Programming
 
